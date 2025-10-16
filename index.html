@@ -3,261 +3,496 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>Professional CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
+            background-color: #f5f5f5;
+            color: #333;
             line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            padding: 20px 0;
-            z-index: 1000;
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ccc;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: transform 0.3s;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .project-card {
-            background: #1a1a1a;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: #2a2a2a;
-        }
-
-        .project-info {
             padding: 20px;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        /* A4 Paper Size */
+        .cv-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            position: relative;
+        }
+
+        /* Left Column */
+        .left-column {
+            flex: 0 0 35%;
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+        }
+
+        /* Right Column */
+        .right-column {
+            flex: 1;
+            padding: 30px;
+        }
+
+        /* Profile Section */
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #3498db;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            color: #3498db;
+        }
+
+        .left-column .section-header {
+            color: white;
+            border-bottom: 2px solid #3498db;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .contact-item i {
+            width: 20px;
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .left-column .contact-item i {
+            color: #3498db;
+        }
+
+        /* QR Code */
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-code p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #2c3e50;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 10px;
+            background: white;
+        }
+
+        /* Skills */
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #34495e;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: #3498db;
+            border-radius: 4px;
+        }
+
+        /* Experience & Education */
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .item-subtitle {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .item-date {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .item-description {
+            font-size: 14px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
             }
+            
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .cv-container {
+                flex-direction: column;
             }
             
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.2rem;
+            .left-column {
+                flex: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="logo">YourLogo</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="cv-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <div class="profile-section">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1 class="name">Alex Johnson</h1>
+                <p class="title">Senior Software Engineer</p>
+            </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1>Creative Digital Solutions</h1>
-            <p>Transforming ideas into exceptional digital experiences</p>
-            <a href="#work" class="cta-button">View Our Work</a>
-        </div>
-    </section>
-
-    <!-- Work Section -->
-    <section id="work">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-info">
-                        <h3>Project One</h3>
-                        <p>Web Design & Development</p>
+            <div class="contact-section">
+                <h2 class="section-header">Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>alex.johnson@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco, CA</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>linkedin.com/in/alexjohnson</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/alexjohnson</span>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-info">
-                        <h3>Project Two</h3>
-                        <p>Brand Identity</p>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-code">
+                    <div id="qrcode"></div>
+                    <p>Scan to add to contacts</p>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h2 class="section-header">Skills</h2>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-info">
-                        <h3>Project Three</h3>
-                        <p>Mobile Application</p>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>React</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Node.js</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="languages-section">
+                <h2 class="section-header">Languages</h2>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>English</span>
+                        <span>Native</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Spanish</span>
+                        <span>Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 60%"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <p>We are a creative agency specializing in digital solutions that drive results.</p>
-        </div>
-    </section>
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="summary-section">
+                <h2 class="section-header">Professional Summary</h2>
+                <p>Results-driven software engineer with 8+ years of experience in developing scalable web applications and leading technical teams. Passionate about creating efficient, user-friendly solutions and mentoring junior developers. Strong background in full-stack JavaScript development and cloud architecture.</p>
+            </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>Ready to start your project? Contact us today.</p>
+            <div class="experience-section">
+                <h2 class="section-header">Work Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Senior Software Engineer</div>
+                            <div class="item-subtitle">Tech Solutions Inc.</div>
+                        </div>
+                        <div class="item-date">2020 - Present</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Lead development of customer-facing web applications using React and Node.js. Implemented CI/CD pipelines reducing deployment time by 40%. Mentored 3 junior developers and conducted technical interviews.</p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Software Engineer</div>
+                            <div class="item-subtitle">Digital Innovations LLC</div>
+                        </div>
+                        <div class="item-date">2017 - 2020</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Developed and maintained multiple web applications using Angular and .NET Core. Collaborated with UX designers to implement responsive interfaces. Improved application performance by 25% through code optimization.</p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Junior Developer</div>
+                            <div class="item-subtitle">WebStart Solutions</div>
+                        </div>
+                        <div class="item-date">2015 - 2017</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Assisted in development of client websites using HTML, CSS, and JavaScript. Participated in code reviews and agile development processes. Contributed to the development of 15+ client projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-section">
+                <h2 class="section-header">Education</h2>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Master of Science in Computer Science</div>
+                            <div class="item-subtitle">Stanford University</div>
+                        </div>
+                        <div class="item-date">2013 - 2015</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Specialized in Software Engineering and Human-Computer Interaction. GPA: 3.8/4.0</p>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Bachelor of Science in Computer Science</div>
+                            <div class="item-subtitle">University of California, Berkeley</div>
+                        </div>
+                        <div class="item-date">2009 - 2013</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Minor in Business Administration. Graduated with Honors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-section">
+                <h2 class="section-header">Projects</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div class="item-title">E-commerce Platform</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Led development of a full-stack e-commerce solution serving 10,000+ users. Built with React, Node.js, and MongoDB. Implemented payment processing and inventory management systems.</p>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div class="item-title">Task Management App</div>
+                    </div>
+                    <div class="item-description">
+                        <p>Developed a collaborative task management application with real-time updates using Socket.io. The app improved team productivity by 30% according to user feedback.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+
+    <button class="download-btn no-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Print CV
+    </button>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Generate QR Code with contact information
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create vCard string
+            const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:Alex Johnson
+TITLE:Senior Software Engineer
+TEL:+1-555-123-4567
+EMAIL:alex.johnson@email.com
+URL:https://linkedin.com/in/alexjohnson
+ADR:;;San Francisco, CA;;;
+END:VCARD`;
+            
+            // Generate QR Code
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: vCard,
+                width: 150,
+                height: 150,
+                colorDark: "#2c3e50",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
             });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                document.querySelector('nav').style.background = 'rgba(10, 10, 10, 0.95)';
-            } else {
-                document.querySelector('nav').style.background = 'rgba(10, 10, 10, 0.9)';
-            }
         });
     </script>
 </body>
