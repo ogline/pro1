@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional CV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>Abhinova - Innovation & Technology Solutions</title>
     <style>
-        /* Reset and Base Styles */
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -15,484 +13,760 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        :root {
+            --primary: #0066cc;
+            --secondary: #004d99;
+            --accent: #00aaff;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+        }
+
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            color: var(--dark);
             line-height: 1.6;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* A4 Paper Size */
-        .cv-container {
-            max-width: 210mm;
-            min-height: 297mm;
+        .container {
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            position: relative;
+            padding: 0 20px;
         }
 
-        /* Left Column */
-        .left-column {
-            flex: 0 0 35%;
-            background: #2c3e50;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
             color: white;
-            padding: 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        /* Right Column */
-        .right-column {
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .hero-btns .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .hero-btns .btn-outline {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
             flex: 1;
-            padding: 30px;
         }
 
-        /* Profile Section */
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 4rem;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
         }
 
-        .name {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            text-align: center;
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        .title {
-            font-size: 18px;
-            color: #3498db;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        /* Section Headers */
-        .section-header {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 25px 0 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #3498db;
-            color: #3498db;
-        }
-
-        .left-column .section-header {
-            color: white;
-            border-bottom: 2px solid #3498db;
-        }
-
-        /* Contact Info */
-        .contact-info {
-            margin-bottom: 20px;
-        }
-
-        .contact-item {
+        .portfolio-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 250px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.2rem;
         }
 
-        .contact-item i {
-            width: 20px;
-            margin-right: 10px;
-            color: #3498db;
+        /* Contact Section */
+        .contact {
+            background-color: var(--light);
         }
 
-        .left-column .contact-item i {
-            color: #3498db;
+        .contact-container {
+            display: flex;
+            gap: 50px;
         }
 
-        /* QR Code */
-        .qr-code {
-            text-align: center;
-            margin: 20px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        .contact-info {
+            flex: 1;
         }
 
-        .qr-code p {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #2c3e50;
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
         }
 
-        #qrcode {
-            display: inline-block;
-            padding: 10px;
-            background: white;
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--gray);
         }
 
-        /* Skills */
-        .skill-item {
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
             margin-bottom: 15px;
         }
 
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
+        .contact-detail i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-right: 15px;
+            width: 20px;
         }
 
-        .skill-bar {
-            height: 8px;
-            background: #34495e;
-            border-radius: 4px;
-            overflow: hidden;
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .skill-level {
-            height: 100%;
-            background: #3498db;
-            border-radius: 4px;
-        }
-
-        /* Experience & Education */
-        .experience-item, .education-item {
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .item-title {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .item-subtitle {
-            color: #3498db;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
-        .item-date {
-            color: #7f8c8d;
-            font-size: 14px;
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
 
-        .item-description {
-            font-size: 14px;
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
         }
 
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .cv-container {
-                box-shadow: none;
-                margin: 0;
-                max-width: 100%;
-            }
-            
-            .no-print {
-                display: none;
-            }
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
 
-        /* Download Button */
-        .download-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #3498db;
+        /* Footer */
+        footer {
+            background-color: var(--dark);
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            z-index: 100;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-column p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .download-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cv-container {
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
                 flex-direction: column;
             }
             
-            .left-column {
-                flex: none;
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+
+            nav ul.active {
+                transform: translateY(0);
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="cv-container">
-        <!-- Left Column -->
-        <div class="left-column">
-            <div class="profile-section">
-                <div class="profile-img">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h1 class="name">Alex Johnson</h1>
-                <p class="title">Senior Software Engineer</p>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Abhin<span>ova</span></a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars">☰</i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            <div class="contact-section">
-                <h2 class="section-header">Contact</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Innovative Solutions for a Digital World</h1>
+            <p>We help businesses transform through cutting-edge technology and creative digital solutions that drive growth and success.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer a comprehensive range of digital services to help your business thrive in the modern landscape.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with modern technologies and best practices for optimal performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile applications designed to deliver exceptional user experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design solutions that enhance usability and create engaging digital experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Digital Marketing</h3>
+                    <p>Data-driven marketing strategies to increase your online visibility and drive qualified traffic.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and services to support your business growth and digital transformation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive security solutions to protect your digital assets and ensure business continuity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Abhinova</h2>
+                    <p>Abhinova is a leading technology company specializing in digital transformation solutions. With over a decade of experience, we've helped businesses of all sizes leverage technology to achieve their goals.</p>
+                    <p>Our team of experts combines technical expertise with creative thinking to deliver solutions that not only meet but exceed our clients' expectations.</p>
+                    <p>We believe in building long-term partnerships with our clients, working collaboratively to understand their unique challenges and develop tailored solutions that drive real results.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="about-image">
+                    Abhinova Team
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Portfolio</h2>
+                <p>Explore some of our recent projects and see how we've helped businesses transform through technology.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    E-commerce Platform
+                </div>
+                <div class="portfolio-item">
+                    Mobile Banking App
+                </div>
+                <div class="portfolio-item">
+                    Healthcare Platform
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your next project? Contact us today and let's discuss how we can help your business grow.</p>
+            </div>
+            <div class="contact-container">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+1 (555) 123-4567</span>
+                    <h3>Contact Information</h3>
+                    <p>We're here to answer any questions you may have about our services. Reach out to us and we'll respond as soon as we can.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i>📍</i>
+                            <span>123 Innovation Drive, Tech City, TC 12345</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i>📞</i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i>✉️</i>
+                            <span>info@abhinova.com</span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>alex.johnson@email.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>San Francisco, CA</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <span>linkedin.com/in/alexjohnson</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <span>github.com/alexjohnson</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="qr-section">
-                <div class="qr-code">
-                    <div id="qrcode"></div>
-                    <p>Scan to add to contacts</p>
-                </div>
-            </div>
-
-            <div class="skills-section">
-                <h2 class="section-header">Skills</h2>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JavaScript</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
                     </div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>React</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Node.js</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Python</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>UI/UX Design</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="languages-section">
-                <h2 class="section-header">Languages</h2>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>English</span>
-                        <span>Native</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Spanish</span>
-                        <span>Intermediate</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 60%"></div>
-                    </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Right Column -->
-        <div class="right-column">
-            <div class="summary-section">
-                <h2 class="section-header">Professional Summary</h2>
-                <p>Results-driven software engineer with 8+ years of experience in developing scalable web applications and leading technical teams. Passionate about creating efficient, user-friendly solutions and mentoring junior developers. Strong background in full-stack JavaScript development and cloud architecture.</p>
-            </div>
-
-            <div class="experience-section">
-                <h2 class="section-header">Work Experience</h2>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Senior Software Engineer</div>
-                            <div class="item-subtitle">Tech Solutions Inc.</div>
-                        </div>
-                        <div class="item-date">2020 - Present</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Lead development of customer-facing web applications using React and Node.js. Implemented CI/CD pipelines reducing deployment time by 40%. Mentored 3 junior developers and conducted technical interviews.</p>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Abhinova</h3>
+                    <p>Transforming businesses through innovative technology solutions and digital expertise.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
                     </div>
                 </div>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Software Engineer</div>
-                            <div class="item-subtitle">Digital Innovations LLC</div>
-                        </div>
-                        <div class="item-date">2017 - 2020</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Developed and maintained multiple web applications using Angular and .NET Core. Collaborated with UX designers to implement responsive interfaces. Improved application performance by 25% through code optimization.</p>
-                    </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Junior Developer</div>
-                            <div class="item-subtitle">WebStart Solutions</div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Subscribe</h3>
+                    <p>Subscribe to our newsletter to receive updates on our latest services and insights.</p>
+                    <form class="subscribe-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
                         </div>
-                        <div class="item-date">2015 - 2017</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Assisted in development of client websites using HTML, CSS, and JavaScript. Participated in code reviews and agile development processes. Contributed to the development of 15+ client projects.</p>
-                    </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
                 </div>
             </div>
-
-            <div class="education-section">
-                <h2 class="section-header">Education</h2>
-                
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Master of Science in Computer Science</div>
-                            <div class="item-subtitle">Stanford University</div>
-                        </div>
-                        <div class="item-date">2013 - 2015</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Specialized in Software Engineering and Human-Computer Interaction. GPA: 3.8/4.0</p>
-                    </div>
-                </div>
-                
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Bachelor of Science in Computer Science</div>
-                            <div class="item-subtitle">University of California, Berkeley</div>
-                        </div>
-                        <div class="item-date">2009 - 2013</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Minor in Business Administration. Graduated with Honors.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="projects-section">
-                <h2 class="section-header">Projects</h2>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div class="item-title">E-commerce Platform</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Led development of a full-stack e-commerce solution serving 10,000+ users. Built with React, Node.js, and MongoDB. Implemented payment processing and inventory management systems.</p>
-                    </div>
-                </div>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div class="item-title">Task Management App</div>
-                    </div>
-                    <div class="item-description">
-                        <p>Developed a collaborative task management application with real-time updates using Socket.io. The app improved team productivity by 30% according to user feedback.</p>
-                    </div>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Abhinova. All Rights Reserved.</p>
             </div>
         </div>
-    </div>
-
-    <button class="download-btn no-print" onclick="window.print()">
-        <i class="fas fa-print"></i> Print CV
-    </button>
+    </footer>
 
     <script>
-        // Generate QR Code with contact information
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create vCard string
-            const vCard = `BEGIN:VCARD
-VERSION:3.0
-FN:Alex Johnson
-TITLE:Senior Software Engineer
-TEL:+1-555-123-4567
-EMAIL:alex.johnson@email.com
-URL:https://linkedin.com/in/alexjohnson
-ADR:;;San Francisco, CA;;;
-END:VCARD`;
-            
-            // Generate QR Code
-            const qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: vCard,
-                width: 150,
-                height: 150,
-                colorDark: "#2c3e50",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times">✕</i>' 
+                : '<i class="fas fa-bars">☰</i>';
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('nav a, .hero-btns a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetSection = document.querySelector(targetId);
+                if(targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars">☰</i>';
+                    }
+                }
             });
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+
+        // Header Background Change on Scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'white';
+                header.style.backdropFilter = 'none';
+            }
         });
     </script>
 </body>
